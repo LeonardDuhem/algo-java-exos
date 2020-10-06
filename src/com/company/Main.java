@@ -3,7 +3,7 @@ package com.company;
 public class Main {
     /**
      * display the table
-     * @param table
+     * @param table your table
      */
     public static void DisplayTable (int[] table){
         for (int i = 0 ; i < 7 ; i++ ) {
@@ -13,10 +13,10 @@ public class Main {
 
     /**
      * displays the best score
-     * @param table
+     * @param table your table
      * @return  the highest score in the array
      */
-    public static int BestScore (int table[]){
+    public static int BestScore (int[] table){
         int max = Integer.MIN_VALUE ;
         for (int i = 0 ; i < 7 ; i++) {
             if (table[i]>max ){
@@ -28,7 +28,7 @@ public class Main {
 
     /**
      * say if there is a number less than 10
-     * @param table
+     * @param table your table
      * @return true if the array contains at least one value <10
      */
     public static boolean LessThan10 (int[] table){
@@ -46,19 +46,19 @@ public class Main {
 
     /**
      * Binary search in a list of numbers
-     * @param table
-     * @param ResearchNumber
+     * @param table your table
+     * @param ResearchNumber The number you search
      * @return the index of the cell containing the number
      */
     public static int BinaryResearch (int[] table , int ResearchNumber ){
 
-        int firstrindex = 0;
+        int firstindex = 0;
         int lastindex = table.length-1;
 
-        while (firstrindex <= lastindex) {
-            int half = (firstrindex + lastindex)/2 ;
+        while (firstindex <= lastindex) {
+            int half = (firstindex + lastindex)/2 ;
             if (ResearchNumber > table[half]){ // check the right part of the table
-                firstrindex = half + 1 ;
+                firstindex = half + 1 ;
             }
             else if (ResearchNumber < table[half]){ // check the left part of the table
                 lastindex = half - 1 ;
@@ -73,10 +73,10 @@ public class Main {
 
     /**
      *Binary search in a list of numbers(recursive methode)
-     * @param table
-     * @param lastindex
-     * @param firstindex
-     * @param researchNumber
+     * @param table your table
+     * @param lastindex the index of the last number in your table
+     * @param firstindex The index of the first number in the table
+     * @param researchNumber The number you search
      * @return the index of the cell containing the number
      */
     public static int RecursiveBinaryResearch (int[] table , int lastindex, int firstindex, int researchNumber ) {
