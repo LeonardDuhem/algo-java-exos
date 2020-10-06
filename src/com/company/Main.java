@@ -1,7 +1,5 @@
 package com.company;
 
-import org.w3c.dom.ls.LSOutput;
-
 public class Main {
     /**permet d'afficher le tableau
      *
@@ -20,7 +18,7 @@ public class Main {
      */
 
     public static int meilleurScore (int tableau[]){
-        int max = 0 ;
+        int max = Integer.MIN_VALUE ;
         for (int i = 0 ; i < 7 ; i++) {
             if (tableau[i]>max ){
                 max = tableau[i];
@@ -48,6 +46,26 @@ public class Main {
         return nombremoinsde10 ;
     }
 
+    public static int recherchebinaire (int[] tableau , int nombreRecherché ){
+
+        int premierindex = 0;
+        int dernierindex = tableau.length-1;
+
+        while (premierindex <= dernierindex) {
+            int moitié = (premierindex + dernierindex)/2 ;
+            if (nombreRecherché > tableau[moitié]){
+                premierindex = moitié + 1 ;
+            }
+            else if (nombreRecherché < tableau[moitié]){
+                dernierindex = moitié - 1 ;
+            }
+            else {
+                return moitié ;
+            }
+
+        }
+        return -1;
+    }
 
 
 
@@ -60,6 +78,11 @@ public class Main {
         scores [4] = 46 ;
         scores [5] = 32 ;
         scores [6] = 50 ;
+
+        int[] tableau = {1, 2, 3, 4, 5, 6, 7, 8, 9} ;
+
+
+
 //        for (int i = 0 ; i < scores.length ; i++ ) {
 //            int s = scores [i] ;
 //            System.out.println("scores = " + s );
@@ -73,13 +96,21 @@ public class Main {
 
 
         afficherTableau(scores);
+
         int bestscore = meilleurScore(scores);
         System.out.println("le meilleur score est : " + bestscore);
+
         boolean under10 = moinsde10(scores);
         System.out.println("est-ce qu'il y a un nombre plus petit que 10 ? : " + under10);
 
+        int resultat = recherchebinaire(tableau, 2) ;
 
-
+        if (resultat == -1){
+            System.out.println("le nombre que vous cherchez n'est pas dans la liste");
+        }
+        else {
+            System.out.println("Votre nombre est a l'index : " + resultat);
+        }
 
     }
 }
