@@ -46,6 +46,12 @@ public class Main {
         return nombremoinsde10 ;
     }
 
+    /**Recherche binaire dans une liste de nombre
+     *
+     * @param tableau
+     * @param nombreRecherché
+     * @return Cette fonction renvoie l'index de la case contenant le nombre
+     */
     public static int recherchebinaire (int[] tableau , int nombreRecherché ){
 
         int premierindex = 0;
@@ -53,10 +59,10 @@ public class Main {
 
         while (premierindex <= dernierindex) {
             int moitié = (premierindex + dernierindex)/2 ;
-            if (nombreRecherché > tableau[moitié]){
+            if (nombreRecherché > tableau[moitié]){ // vérifie la partie droite du tableau
                 premierindex = moitié + 1 ;
             }
-            else if (nombreRecherché < tableau[moitié]){
+            else if (nombreRecherché < tableau[moitié]){ // vérifie la partie gauche du tableau
                 dernierindex = moitié - 1 ;
             }
             else {
@@ -67,6 +73,23 @@ public class Main {
         return -1;
     }
 
+    public static int rechercheBinnaireRécursive (int[] tableau , int dernierindex, int premierindex, int nombreRecherché ) {
+
+        if (premierindex <= dernierindex) {
+            int moitié = (premierindex + dernierindex) / 2;
+
+            if (nombreRecherché == tableau[moitié]) {
+                return moitié;
+            }
+            if (nombreRecherché > tableau[moitié]) {
+                return rechercheBinnaireRécursive(tableau, dernierindex,moitié+1, nombreRecherché);
+            }
+            else if (nombreRecherché < tableau[moitié]) {
+                return rechercheBinnaireRécursive(tableau, moitié-1 , premierindex, nombreRecherché);
+            }
+        }
+        return -1;
+    }
 
 
     public static void main(String[] args) {
@@ -82,6 +105,7 @@ public class Main {
         int[] tableau = {1, 2, 3, 4, 5, 6, 7, 8, 9} ;
 
 
+
         afficherTableau(scores);
 
         int bestscore = meilleurScore(scores);
@@ -90,7 +114,7 @@ public class Main {
         boolean under10 = moinsde10(scores);
         System.out.println("est-ce qu'il y a un nombre plus petit que 10 ? : " + under10);
 
-        int resultat = recherchebinaire(tableau, 2) ;
+        int resultat = recherchebinaire(tableau, 5) ;
 
         if (resultat == -1){
             System.out.println("le nombre que vous cherchez n'est pas dans la liste");
@@ -99,5 +123,14 @@ public class Main {
             System.out.println("Votre nombre est a l'index : " + resultat);
         }
 
+
+        int resultat2 = rechercheBinnaireRécursive(tableau, tableau.length-1, 0, 0) ;
+
+        if (resultat2 == -1){
+            System.out.println("le nombre que vous cherchez n'est pas dans la liste");
+        }
+        else {
+            System.out.println("Votre deuxième nombre est a l'index : " + resultat2);
+        }
     }
 }
