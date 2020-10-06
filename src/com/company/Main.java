@@ -1,91 +1,97 @@
 package com.company;
 
 public class Main {
-    /**permet d'afficher le tableau
-     *
-     * @param tableau de scores
+    /**
+     * display the table
+     * @param table
      */
-    public static void afficherTableau (int tableau[]){
+    public static void DisplayTable (int[] table){
         for (int i = 0 ; i < 7 ; i++ ) {
-            System.out.println(tableau[i]);
+            System.out.println(table[i]);
         }
     }
 
-    /**affiche le meilleur score
-     *
-     * @param tableau de scores
-     * @return renvoie le plus grand score du tableau
+    /**
+     * displays the best score
+     * @param table
+     * @return  the highest score in the array
      */
-
-    public static int meilleurScore (int tableau[]){
+    public static int BestScore (int table[]){
         int max = Integer.MIN_VALUE ;
         for (int i = 0 ; i < 7 ; i++) {
-            if (tableau[i]>max ){
-                max = tableau[i];
+            if (table[i]>max ){
+                max = table[i];
             }
         }
         return max ;
     }
 
-    /**dit si il y a un nombre inférieur a 10
-     *
-     * @param tableau de scores
-     * @return renvoie vrai si le tableau contient au moins une valeur
-     * inférieure à 10
+    /**
+     * say if there is a number less than 10
+     * @param table
+     * @return true if the array contains at least one value <10
      */
-    public static boolean moinsde10 (int[] tableau){
-        boolean nombremoinsde10 = false ;
-        int N = 10 ;
+    public static boolean LessThan10 (int[] table){
+        boolean numberLessThan10 = false ;
+        int ten = 10 ;
         for (int i = 0 ; i < 7 ; i++) {
-            if (tableau[i]<N ){
-                N = tableau[i];
-                nombremoinsde10 = true ;
+            if (table[i]<ten ){
+                ten = table[i];
+                numberLessThan10 = true ;
             }
 
         }
-        return nombremoinsde10 ;
+        return numberLessThan10 ;
     }
 
-    /**Recherche binaire dans une liste de nombre
-     *
-     * @param tableau
-     * @param nombreRecherché
-     * @return Cette fonction renvoie l'index de la case contenant le nombre
+    /**
+     * Binary search in a list of numbers
+     * @param table
+     * @param ResearchNumber
+     * @return the index of the cell containing the number
      */
-    public static int recherchebinaire (int[] tableau , int nombreRecherché ){
+    public static int BinaryResearch (int[] table , int ResearchNumber ){
 
-        int premierindex = 0;
-        int dernierindex = tableau.length-1;
+        int firstrindex = 0;
+        int lastindex = table.length-1;
 
-        while (premierindex <= dernierindex) {
-            int moitié = (premierindex + dernierindex)/2 ;
-            if (nombreRecherché > tableau[moitié]){ // vérifie la partie droite du tableau
-                premierindex = moitié + 1 ;
+        while (firstrindex <= lastindex) {
+            int half = (firstrindex + lastindex)/2 ;
+            if (ResearchNumber > table[half]){ // check the right part of the table
+                firstrindex = half + 1 ;
             }
-            else if (nombreRecherché < tableau[moitié]){ // vérifie la partie gauche du tableau
-                dernierindex = moitié - 1 ;
+            else if (ResearchNumber < table[half]){ // check the left part of the table
+                lastindex = half - 1 ;
             }
             else {
-                return moitié ;
+                return half ;
             }
 
         }
         return -1;
     }
 
-    public static int rechercheBinnaireRécursive (int[] tableau , int dernierindex, int premierindex, int nombreRecherché ) {
+    /**
+     *Binary search in a list of numbers(recursive methode)
+     * @param table
+     * @param lastindex
+     * @param firstindex
+     * @param researchNumber
+     * @return the index of the cell containing the number
+     */
+    public static int RecursiveBinaryResearch (int[] table , int lastindex, int firstindex, int researchNumber ) {
 
-        if (premierindex <= dernierindex) {
-            int moitié = (premierindex + dernierindex) / 2;
+        if (firstindex <= lastindex) {
+            int half = (firstindex + lastindex) / 2;
 
-            if (nombreRecherché == tableau[moitié]) {
-                return moitié;
+            if (researchNumber == table[half]) {
+                return half;
             }
-            if (nombreRecherché > tableau[moitié]) {
-                return rechercheBinnaireRécursive(tableau, dernierindex,moitié+1, nombreRecherché);
+            if (researchNumber > table[half]) {
+                return RecursiveBinaryResearch(table, lastindex,half+1, researchNumber);
             }
-            else if (nombreRecherché < tableau[moitié]) {
-                return rechercheBinnaireRécursive(tableau, moitié-1 , premierindex, nombreRecherché);
+            else if (researchNumber < table[half]) {
+                return RecursiveBinaryResearch(table, half-1 , firstindex, researchNumber);
             }
         }
         return -1;
@@ -102,35 +108,36 @@ public class Main {
         scores [5] = 32 ;
         scores [6] = 50 ;
 
-        int[] tableau = {1, 2, 3, 4, 5, 6, 7, 8, 9} ;
+        int[] table = {1, 2, 3, 4, 5, 6, 7, 8, 9} ;
 
 
 
-        afficherTableau(scores);
+        DisplayTable(scores);
 
-        int bestscore = meilleurScore(scores);
-        System.out.println("le meilleur score est : " + bestscore);
 
-        boolean under10 = moinsde10(scores);
-        System.out.println("est-ce qu'il y a un nombre plus petit que 10 ? : " + under10);
+        int bestscore = BestScore(scores);
+        System.out.println("The best score is : " + bestscore);
 
-        int resultat = recherchebinaire(tableau, 5) ;
 
-        if (resultat == -1){
-            System.out.println("le nombre que vous cherchez n'est pas dans la liste");
+        boolean under10 = LessThan10(scores);
+        System.out.println("is there a number less than 10? : " + under10);
+
+
+        int result = BinaryResearch(table, 5) ;
+        if (result == -1){
+            System.out.println("the number you are looking for is not in the list");
         }
         else {
-            System.out.println("Votre nombre est a l'index : " + resultat);
+            System.out.println("Your number is on the index : " + result);
         }
 
 
-        int resultat2 = rechercheBinnaireRécursive(tableau, tableau.length-1, 0, 0) ;
-
-        if (resultat2 == -1){
-            System.out.println("le nombre que vous cherchez n'est pas dans la liste");
+        int result2 = RecursiveBinaryResearch(table, table.length-1, 0, 0) ;
+        if (result2 == -1){
+            System.out.println("the number you are looking for is not in the list");
         }
         else {
-            System.out.println("Votre deuxième nombre est a l'index : " + resultat2);
+            System.out.println("Your second number is on the index : " + result2);
         }
     }
 }
