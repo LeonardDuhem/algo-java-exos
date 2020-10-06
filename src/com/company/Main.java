@@ -82,19 +82,6 @@ public class Main {
         int[] tableau = {1, 2, 3, 4, 5, 6, 7, 8, 9} ;
 
 
-
-//        for (int i = 0 ; i < scores.length ; i++ ) {
-//            int s = scores [i] ;
-//            System.out.println("scores = " + s );
-//        }
-//        int somme = 0 ;
-//        for(int i = 0 ; i < scores.length ; i++) {
-//            somme += scores[i];
-//        }
-//        float moyenne = somme / scores.length ;
-//        System.out.println("la moyenne des scores est : " + moyenne);
-
-
         afficherTableau(scores);
 
         int bestscore = meilleurScore(scores);
