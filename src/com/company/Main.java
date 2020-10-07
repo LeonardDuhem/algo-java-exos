@@ -56,15 +56,15 @@ public class Main {
         int lastindex = table.length-1;
 
         while (firstindex <= lastindex) {
-            int half = (firstindex + lastindex)/2 ;
-            if (ResearchNumber > table[half]){ // check the right part of the table
-                firstindex = half + 1 ;
+            int middle = (firstindex + lastindex)/2 ;
+            if (ResearchNumber > table[middle]){ // check the right part of the table
+                firstindex = middle + 1 ;
             }
-            else if (ResearchNumber < table[half]){ // check the left part of the table
-                lastindex = half - 1 ;
+            else if (ResearchNumber < table[middle]){ // check the left part of the table
+                lastindex = middle - 1 ;
             }
             else {
-                return half ;
+                return middle ;
             }
 
         }
@@ -82,16 +82,16 @@ public class Main {
     public static int RecursiveBinaryResearch (int[] table , int lastindex, int firstindex, int researchNumber ) {
 
         if (firstindex <= lastindex) {
-            int half = (firstindex + lastindex) / 2;
+            int middle = (firstindex + lastindex) / 2;
 
-            if (researchNumber == table[half]) {
-                return half;
+            if (researchNumber == table[middle]) {
+                return middle;
             }
-            if (researchNumber > table[half]) {
-                return RecursiveBinaryResearch(table, lastindex,half+1, researchNumber);
+            if (researchNumber > table[middle]) {
+                return RecursiveBinaryResearch(table, lastindex,middle+1, researchNumber);
             }
-            else if (researchNumber < table[half]) {
-                return RecursiveBinaryResearch(table, half-1 , firstindex, researchNumber);
+            else if (researchNumber < table[middle]) {
+                return RecursiveBinaryResearch(table, middle-1 , firstindex, researchNumber);
             }
         }
         return -1;
